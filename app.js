@@ -1,12 +1,7 @@
-import { createServer } from "http";
-
-createServer((request, response) => {
-    if (request.url === '/foo') {
-        response.write('<html><body><b>foo</b></body></html>');
-    } else if (request.url === '/bar') {
-        response.write('<html><body><u>bar</u></body></html>');
-    } else {
-        response.statusCode = 404;
-        response.end();
-    }
-}).listen(80);
+import express from 'express';
+const app = express();
+app.use(express.static('public'));
+app.get('/', (req, res) => {
+ res.send('GET');
+});
+app.listen(80);
